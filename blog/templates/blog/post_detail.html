@@ -18,7 +18,13 @@
       {{post.text}}
     </blockquote>
 
-
+    <div class="container">
+        <form method="post" action="{% url 'comment' post.id %}">
+            {% csrf_token %}
+            {{comment_form}}
+            <input type="submit" value="comment">
+        </form>
+    </div>
     
     
   
