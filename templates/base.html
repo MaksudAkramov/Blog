@@ -1,0 +1,131 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Praise&display=swap" rel="stylesheet">
+  <title>
+      Homepage
+  </title>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+      
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    /* @media screen and (max-width: 767px) { */
+      .sidenav {
+        height: 1000px;
+        padding: 15px;
+        background-color: #05386b;
+      }
+      .row.content {height: auto;} 
+    /* } */
+    .navbar {
+        background-color:#05386b;
+    }
+    .username {
+        padding-left: 675%;
+    }
+    /* .author {
+        padding-left: 50%;
+    } */
+  </style>
+</head>
+
+    <body>
+        
+
+        
+            <div>
+                <nav class="navbar navbar-dark navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" style="font-family: 'Praise', cursive; font-size: 40px;" href="{% url 'home' %}">Blog</a>
+                    
+
+                    
+                    
+                
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'aboutus' %}">AboutUs</a>
+                            </li>
+                            {% if not user.is_authenticated %}
+                            <li class="nav-item active username">
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            </li>
+                            
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item active username" >
+                                <a class="nav-link" href="#"> <i>{{ user.username }}</i>&#160;&#160;|</a>
+                            </li>
+                            <li class="nav-item active logout" >
+                                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                            </li>
+                            {% endif %}
+                            
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </nav>
+            </div>
+            <div class="container-fluid">
+                <div class="row content">
+                    <div class="col-sm-2 sidenav">
+                        <h4 style="color: #f1f1f1;">Select the categories:</h4>
+                        <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#section1">Most liked</a></li> <n></n>
+                        <li><a href="#section2">Most viewed</a></li>
+                        <li><a href="#section3">Most reacted</a></li>
+                        <li><a href="#section3">Photoseververe</a></li>
+                        </ul><br>
+                    </div> 
+                
+            
+
+                    <div class="col-sm-10 ">
+                    
+                        {% block content %}
+                        {% endblock %}
+                        
+                        
+                    </div>
+            </div>    
+    
+
+    </body>
+</html>
