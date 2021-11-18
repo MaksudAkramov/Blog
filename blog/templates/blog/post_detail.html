@@ -24,6 +24,24 @@
             {{comment_form}}
             <input type="submit" value="comment">
         </form>
+
+
+
+        {% for c in comment_list %}
+        
+ 
+
+          <div class="jumbotron">
+            {% if c.author.photo %}
+            
+              <img src="{{c.author.photo.url}}" class="img-circle" style="float: left;" alt="" width="25" height="25">  <p style="font-size: small;"> &nbsp;&nbsp;{{c.author}} on {{c.created_time}}</p>
+            
+            {% endif %}
+            
+            <h3>{{c.text}}</h3>      
+          </div>
+    
+        {% endfor %} 
     </div>
     
     
