@@ -63,4 +63,28 @@ def add_post(request):
         form.save()
         return render(request, 'blog/post_list.html', context={'posts': posts}) 
     context['form']= form
-    return render(request, "blog/add_post.html", context)    
+    return render(request, "blog/add_post.html", context)   
+
+# @login_required('login')
+# def like_post(request, poem_id):
+#     post = Post.objects.filter(id=poem_id).first()
+#     like = Like.objects.filter(post=self.object)
+#     if post:
+                                    
+#         post.like_set.create(user=request.user)
+        
+#         return redirect('post_detail')
+        
+#     return render(request, '404.html')
+
+
+# @login_required(login_url='/accounts/login')
+# def dislike_post(request, poem_id):
+#     post = Post.objects.filter(id=poem_id).first()
+#     if post:
+#         post.dislike_set.create(user=request.user)
+        
+#         return redirect('post_detail')
+        
+        
+#     return render(request, '404.html')     
