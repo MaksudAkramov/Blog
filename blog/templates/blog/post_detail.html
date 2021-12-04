@@ -4,6 +4,13 @@
 
 
   {% block content %}
+  <head>
+    <title>
+      {% if post.title %}
+            {{post.title}}
+      {% endif %}
+    </title>
+  </head>
 
   <div class="container">
     <div class="row" style="padding-top: 5%;">
@@ -17,6 +24,9 @@
     <blockquote>
       {{post.text}}
     </blockquote>
+    
+    <a href="{% url 'like' post.id %}">like</a><a href="{% url 'dislike' post.id %}">dislike</a>
+
 
     <div class="container">
         <form method="post" action="{% url 'comment' post.id %}">
@@ -34,11 +44,18 @@
           <div class="jumbotron">
             {% if c.author.photo %}
             
-              <img src="{{c.author.photo.url}}" class="img-circle" style="float: left;" alt="" width="25" height="25">  <p style="font-size: small;"> &nbsp;&nbsp;{{c.author}} on {{c.created_time}}</p>
+              <img src="{{c.author.photo.url}}" class="img-circle" style="float: left;" alt="" width="25" height="25">  <p style="font-size: small;"> &nbsp;&nbsp;{{c.author}} <i style="margin-right: 10%;"> {{c.created_time}}</i></p>
             
+            {% else %}
+
+            <img src="/media/images/default.jpg" class="img-circle" style="float: left;" alt="" width="25" height="25">  <p style="font-size: small;"> &nbsp;&nbsp;{{c.author}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{c.created_time}}</p>
+
             {% endif %}
             
-            <h3>{{c.text}}</h3>      
+            <h3>{{c.text}}</h3>
+            
+            
+            
           </div>
     
         {% endfor %} 

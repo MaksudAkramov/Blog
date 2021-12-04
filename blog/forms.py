@@ -1,4 +1,7 @@
 from django import forms
+from django.db import models
+from django.db.models.deletion import CASCADE
+from account.models import Account
 
 from blog.models import Post
 
@@ -8,6 +11,7 @@ class CommentForm(forms.Form):
 
 
 class PostForm(forms.ModelForm):
+    author = models.ForeignKey(Account, on_delete=CASCADE)
     class Meta:
         model = Post
         fields = ['title', 'text', 'author']   

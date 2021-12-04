@@ -8,7 +8,7 @@ class Account(AbstractUser):
     last_name = models.CharField(max_length=50)
     photo = models.ImageField(upload_to='profile/')
     email = models.EmailField()
-    password = models.CharField(_('password'), max_length=128)
+    password = models.CharField(_('password'), max_length=128, editable=False)
 
     
 
