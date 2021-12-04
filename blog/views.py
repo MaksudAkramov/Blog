@@ -36,22 +36,21 @@ class PostDetailView(LoginPermissionMixin, DetailView):
         
         return context        
 
-# class CategoryListView(ListView):
-#     model = Post
-#     template_name = 'title/category_list.html'
-#     paginate_by = 6
+class CategoryListView(ListView):
+    model = Post
+    template_name = 'blog/category_list.html'
+    paginate_by = 6
 
-#     def get_queryset(self):
-#        return Post.objects.filter(category=self.request.resolver_match.kwargs['pk']).order_by('-date')
+    def get_queryset(self):
+       return Post.objects.filter(category=self.request.resolver_match.kwargs['pk']).order_by('-date')
 
-#     def get_context_data(self, **kwargs):
-#         category = get_object_or_404(Category, name=self.kwargs['pk']) 
-#         context = super().get_context_data(*kwargs)
-#         context['category_list'] = Category.objects.all()
-#         context.update({
-#             'category_list': Category.objects.all(),
-#         })
-#         return context    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(*kwargs)
+        context['category_list'] = Category.objects.all()
+        context.update({
+            'category_list': Category.objects.all(),
+        })
+        return context    
 
 class  AboutUsView(TemplateView):
     template_name = "about.html"    

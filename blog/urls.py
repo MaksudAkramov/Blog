@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 
-from .views import AboutUsView, PostDetailView, PostListView, add_post, comment_post, dislike_post, like_post
+from .views import AboutUsView, CategoryListView, PostDetailView, PostListView, add_post, comment_post, dislike_post, like_post
 # dislike_post, like_post
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('<post_id>/like', like_post, name='like'),
     path('<post_id>/dislike', dislike_post, name='dislike'),
     path('aboutus', AboutUsView.as_view(), name='aboutus'),
+    path('news', CategoryListView.as_view(), name='category_news'),
 ]

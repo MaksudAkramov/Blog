@@ -5,15 +5,6 @@ from django.db.models.deletion import CASCADE
 
 
 
-class Post(models.Model):
-    title = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='images/')
-    text = models.TextField()
-    author = models.ForeignKey(Account, on_delete=CASCADE, default=Account)
-    approved_by = models.ManyToManyField(Account, related_name="+++", default=Account)
-    created_time = models.DateTimeField(auto_now_add=True)
-
-
 class Category(models.Model):
 
     name = models.CharField(max_length=30, primary_key=True)
@@ -22,7 +13,18 @@ class Category(models.Model):
     icon = models.ImageField(upload_to = 'с_icom', null = True)
 
     def str(self) -> str:
-        return f"{self.name}"    
+        return f"{self.name}"
+        
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='images/')
+    text = models.TextField()
+    category = models.ForeignKey(Category, on_delete=CASCADE)
+    author = models.ForeignKey(Account, on_delete=CASCADE, default=Account)
+    approved_by = models.ManyToManyField(Account, related_name="+++", default=Account)
+    created_time = models.DateTimeField(auto_now_add=True)
+
+    
     
 
 class Comment(models.Model):
