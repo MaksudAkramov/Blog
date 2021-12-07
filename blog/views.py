@@ -32,17 +32,17 @@ class PostDetailView(LoginPermissionMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         context['comment_form'] = CommentForm()
-        context['comment_list'] = Comment.objects.filter(post=self.object).order_by('-created_time')
+        context['comment_list'] = Comment.objects.filter(post=self.object).order_by('created_time')
         
         return context        
 
-class CategoryListView(ListView):
+class CategoryListView(ListView,):
     model = Post
     template_name = 'blog/category_list.html'
     paginate_by = 6
 
     def get_queryset(self):
-       return Post.objects.filter(category=self.request.resolver_match.kwargs['pk']).order_by('-date')
+       return Post.objects.filter(category=self.request.resolver_match.kwargs['pk']).order_by('-created_time')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(*kwargs)

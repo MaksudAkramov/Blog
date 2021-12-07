@@ -14,4 +14,4 @@ class PostForm(forms.ModelForm):
     author = models.ForeignKey(Account, on_delete=CASCADE)
     class Meta:
         model = Post
-        fields = ['title', 'text', 'author']   
+        fields = ['title', 'text', 'author', 'category']   
