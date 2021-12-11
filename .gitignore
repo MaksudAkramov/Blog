@@ -1,7 +1,0 @@
-.env
-db.sqlite3
-
-.gitignore
-
-__pycache__
-media
