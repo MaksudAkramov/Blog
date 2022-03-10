@@ -1,7 +1,9 @@
 .env
-db.sqlite3
+*.sqlite3
 
 .gitignore
 
 __pycache__
 media
+venv
+db.sqlite3
